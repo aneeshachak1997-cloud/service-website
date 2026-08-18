@@ -175,6 +175,7 @@ img {
 }
 
 /*  HERO SECTION */
+/* --- Base Styles --- */
 .hero {
   padding: 3.5rem 0;
   background-color: var(--bg-light);
@@ -204,6 +205,7 @@ img {
   display: flex;
   gap: 1rem;
   margin-bottom: 2.5rem;
+  flex-wrap: wrap; /* Allows buttons to stack on tiny screens */
 }
 
 .hero-stats {
@@ -227,9 +229,14 @@ img {
 
 .hero-image figure {
   position: relative;
+  margin: 0;
 }
 
+/* FIX: Ensure image shrinks fluidly without breaking container */
 .hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 8px;
   box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
 }
@@ -239,6 +246,42 @@ img {
   color: var(--text-muted);
   margin-top: 0.5rem;
   text-align: right;
+}
+
+/* --- Mobile & Tablet Breakpoint (768px and below) --- */
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  /* Stacks content vertically */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem; /* Slightly smaller heading for small screens */
+  }
+
+  /* Moves image to the top on mobile if desired, or leave normal flow */
+  .hero-image {
+    order: -1; 
+  }
+
+  .hero-image figcaption {
+    text-align: center;
+  }
+}
+
+/* --- Extra Small Devices (400px and below) --- */
+@media (max-width: 400px) {
+  /* Prevent stats from squishing into 3 tiny columns */
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: center;
+  }
 }
 
 /* CLIENT LOGOS BAR */
@@ -280,7 +323,7 @@ img {
 
 .section-header {
   text-align: center;
-  max-width: 600px;
+  max-width: 37rem;
   margin: 0 auto 3rem auto;
 }
 
